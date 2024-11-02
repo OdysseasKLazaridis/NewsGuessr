@@ -8,3 +8,6 @@ save the requirements with pip freeze > requirements.py
 
 in order to check if I need test, I can run --cov-report html --cov=./
 
+proxies are taken from https://free-proxy-list.net/#
+
+https://www.youtube.com/watch?v=rQXL9A0ST5k
