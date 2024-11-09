@@ -1,0 +1,6 @@
+.gitattributes
+.coverage
+.DS_Store
+
+.env
+venv\
