@@ -6,4 +6,4 @@
 
 # Ignore environment
 .env
-/venv/
+venv/
