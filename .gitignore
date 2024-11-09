@@ -1,6 +1,9 @@
-.gitattributes
+# Ignore coverage reports
 .coverage
+
+# Ignore MacOS files
 .DS_Store
 
+# Ignore environment
 .env
-venv\
+/venv/
