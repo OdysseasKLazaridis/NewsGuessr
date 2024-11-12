@@ -1,0 +1,4 @@
+Capatcha is probably not a good idea since NYT is blocking my IPs.
+I need to find to way to change IPs every time probably.
+
+Selenium sound like it simulates a human like activity
