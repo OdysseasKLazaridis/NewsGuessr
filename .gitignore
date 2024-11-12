@@ -9,3 +9,4 @@
 venv/
 
 all_words.npz
+nouns_data.npz
