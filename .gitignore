@@ -7,3 +7,5 @@
 # Ignore environment
 .env
 venv/
+
+all_words.npz
