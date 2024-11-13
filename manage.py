@@ -2,14 +2,14 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from Table.settings import base
+from newsguessr_app.settings import base
 
 def main():
     """Run administrative tasks."""
     if base.DEBUG == True:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Table.settings.local')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'newsguessr_app.settings.local')
     else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Table.settings.production')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'newsguessr_app.settings.local')
 
     try:
         from django.core.management import execute_from_command_line

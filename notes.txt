@@ -1,10 +1,6 @@
-source venv/bin/activate to activate my virtual environment
+εψαχνα δυο ωρες να δω γιατι δε δουλευει και φταιει ο μαλακας ο Στελιος που μου διέγραψε το .env
 
 migrate a class with  ./manage.py makemigrations
-
-
-save the requirements with pip freeze > requirements.py
-
 
 in order to check if I need test, I can run --cov-report html --cov=./
 
