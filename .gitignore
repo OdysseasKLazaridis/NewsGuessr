@@ -7,6 +7,6 @@
 # Ignore environment
 #.env  while in dev
 venv/
-
+data
 all_words.npz
 README.txt

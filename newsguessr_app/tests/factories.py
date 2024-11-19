@@ -1,7 +1,7 @@
 import factory
 from django.contrib.auth.models import User
 
-from newsguessr_app.blog.models import Post
+from newsguessr_app.quiz.models import Post
 
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:

@@ -1,0 +1,28 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+}
+.btn-primary, .btn-dark:hover, .btn-dark:active, .btn-dark:visited {
+    background-color: #FF5700 !important;
+}
+
+.footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #FF5700;
+}
+
+.logo{
+    font-family: "Reddit Mono", monospace;
+    font-weight: 500;
+}

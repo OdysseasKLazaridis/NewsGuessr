@@ -1,0 +1,36 @@
+{%extends "../base/base.html"%}
+
+{%block title%}
+    RedditGuessr level 1
+{% endblock %}
+
+{%block template%}
+
+<div class="question-container p-4 rounded w-100 m-3">
+    <h5 class="mb-4 text-center fw-bold">1. Which of the following is NOT a valid lifecycle method in React?</h5>
+    <form>
+        <div class="row mb-3">
+            <div class="col-md-6 col-12 mb-md-0 mb-3">
+                <input type="radio" class="btn-check" name="options" id="optionA" autocomplete="off">
+                <a type="button" class="btn btn-outline-dark rounded-pill">{quiz.keywrord}</a>
+            </div>
+            <div class="col-md-6 col-12">
+                <input type="radio" class="btn-check" name="options" id="optionB" autocomplete="off">
+                <label class="option-button rounded-3 d-block p-3" for="optionB">{quiz.choice}</label>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6 col-12 mb-md-0 mb-3">
+                <input type="radio" class="btn-check" name="options" id="optionC" autocomplete="off">
+                <label class="option-button rounded-3 d-block p-3" for="optionC">C. componentDidUpdate</label>
+            </div>
+            <div class="col-md-6 col-12">
+                <input type="radio" class="btn-check" name="options" id="optionD" autocomplete="off">
+                <label class="option-button rounded-3 d-block p-3" for="optionD">D. componentWillRecieveProps</label>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
