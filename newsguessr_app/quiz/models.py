@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Daily_Challenge(models.Model):
-    
+    challenge_date = models.DateField()  # Manually set date for each entry
+
     created_at = models.DateTimeField(auto_now_add= True, editable = False)
 
     class Meta:
@@ -18,10 +19,6 @@ class Quiz(models.Model):
         return self.text
 
 class Choice(models.Model):
-    options = (
-        ("correct"),
-        ("wrong")
-    )
     name = models.CharField(max_length=100)  # The display name of the choice
     mentions = models.IntegerField() # The value that will be saved to the database
     is_correct = models.BooleanField(default=False)

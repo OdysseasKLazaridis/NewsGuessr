@@ -1,0 +1,10 @@
+from newsguessr_app.quiz.models import Daily_Challenge, Quiz, Choice
+from datetime import date
+
+t = Daily_Challenge(challenge_date = date.today())
+t.save()
+t.quiz_set.create(text = "Guess who has the girthiest cock")
+
+t.quiz_set.get(id=1)
+q = t.quiz_set.get(id=1)
+q.choice_set("O Odysseas",1954, True)

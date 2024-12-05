@@ -6,40 +6,39 @@
 
 {%block template%}
 
+
 <div class="container my-4">
-    <div class="question-container p-4 rounded shadow bg-light">
-        <h5 class="mb-4 text-center fw-bold">1. Which of the following is NOT a valid lifecycle method in React?</h5>
-        <form>
-            <div class="row mb-3">
-                <!-- Choice 1 -->
-                <div class="col-md-6 col-12 mb-3">
-                    <input type="radio" class="btn-check" name="options" id="optionA" autocomplete="off">
-                    <label for="optionA" class="btn btn-outline-dark rounded-pill w-100">Choice A</label>
-                </div>
-                <!-- Choice 2 -->
-                <div class="col-md-6 col-12 mb-3">
-                    <input type="radio" class="btn-check" name="options" id="optionB" autocomplete="off">
-                    <label for="optionB" class="btn btn-outline-dark rounded-pill w-100">Choice B</label>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <!-- Choice 3 -->
-                <div class="col-md-6 col-12 mb-3">
-                    <input type="radio" class="btn-check" name="options" id="optionC" autocomplete="off">
-                    <label for="optionC" class="btn btn-outline-dark rounded-pill w-100">Choice C</label>
-                </div>
-                <!-- Choice 4 -->
-                <div class="col-md-6 col-12 mb-3">
-                    <input type="radio" class="btn-check" name="options" id="optionD" autocomplete="off">
-                    <label for="optionD" class="btn btn-outline-dark rounded-pill w-100">Choice D</label>
-                </div>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary rounded-pill">Submit</button>
-            </div>
-        </form>
+    <div id="quiz-container" class="question-container p-4 rounded shadow bg-light">
+        {% include 'game/quiz_fragment.html' with quiz=quiz %}
     </div>
 </div>
+
+<script>
+    // Function to fetch the next quiz and render it
+    function loadNextQuiz(quizId) {
+        fetch(`/next-quiz/${quizId}/`, {
+            method: 'GET',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('quiz-container').innerHTML = data.html;
+            } else {
+                document.getElementById('quiz-container').innerHTML = `<p>${data.message}</p>`;
+            }
+        })
+        .catch(error => console.error('Error fetching the next quiz:', error));
+    }
+
+    // Event listener for the Submit button
+    document.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const currentQuizId = event.target.dataset.quizId;
+        loadNextQuiz(currentQuizId);
+    });
+</script>
+
 
 
 {% endblock %}

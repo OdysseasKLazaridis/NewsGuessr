@@ -1,5 +1,6 @@
 εψαχνα δυο ωρες να δω γιατι δε δουλευει και φταιει ο μαλακας ο Στελιος που μου διέγραψε το .env
 
+if I change a model, delete migrations and run makemigrations and then migrate
 migrate a class with  ./manage.py makemigrations
 
 in order to check if I need test, I can run --cov-report html --cov=./

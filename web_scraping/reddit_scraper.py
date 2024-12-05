@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 
 load_dotenv()
-
+ 
 BASE_PROJECT_DIR = Path(os.getenv("PROJECT_DIR"))
 
 client_id = "OY460kUna6iiYLtTT-pNHg"
