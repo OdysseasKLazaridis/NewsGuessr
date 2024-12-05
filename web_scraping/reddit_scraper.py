@@ -3,6 +3,13 @@ from praw.models import MoreComments
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
+from dotenv import load_dotenv
+import os
+from pathlib import Path
+
+load_dotenv()
+
+BASE_PROJECT_DIR = Path(os.getenv("PROJECT_DIR"))
 
 client_id = "OY460kUna6iiYLtTT-pNHg"
 secret = "7h-1QRYJh8DAnf3MiWF0yjv_25gJxQ"
@@ -34,9 +41,9 @@ reddit_read_only = praw.Reddit(client_id = "OY460kUna6iiYLtTT-pNHg",		 # your cl
 							client_secret = "7h-1QRYJh8DAnf3MiWF0yjv_25gJxQ",	 # your client secret
 							user_agent = "word_guessr")	 # your user agent
 
-subreddit_scraped = "askscience"
+subreddit_scraped = "solana"
 subreddit = reddit_read_only.subreddit(subreddit_scraped)
-posts = subreddit.top("month")
+posts = subreddit.top("day")
 #get the urls of the top posts
 
 base_url = "https://www.reddit.com"
@@ -51,7 +58,7 @@ for url in tqdm(urls):
     for comment in submission.comments:
         sentences = sentences + get_all_comments(comment) + split_into_sentences(submission.selftext)
 # Save the arrays
-file_name = '../data/'+subreddit_scraped +'.npz'
+file_name = BASE_PROJECT_DIR / 'data' / f'{subreddit_scraped}.npz'
 np.savez(file_name,sentences=sentences)
 
 

@@ -6,30 +6,39 @@
 
 {%block template%}
 
-<div class="question-container p-4 rounded w-100 m-3">
-    <h5 class="mb-4 text-center fw-bold">1. Which of the following is NOT a valid lifecycle method in React?</h5>
-    <form>
-        <div class="row mb-3">
-            <div class="col-md-6 col-12 mb-md-0 mb-3">
-                <input type="radio" class="btn-check" name="options" id="optionA" autocomplete="off">
-                <a type="button" class="btn btn-outline-dark rounded-pill">{quiz.keywrord}</a>
+<div class="container my-4">
+    <div class="question-container p-4 rounded shadow bg-light">
+        <h5 class="mb-4 text-center fw-bold">1. Which of the following is NOT a valid lifecycle method in React?</h5>
+        <form>
+            <div class="row mb-3">
+                <!-- Choice 1 -->
+                <div class="col-md-6 col-12 mb-3">
+                    <input type="radio" class="btn-check" name="options" id="optionA" autocomplete="off">
+                    <label for="optionA" class="btn btn-outline-dark rounded-pill w-100">Choice A</label>
+                </div>
+                <!-- Choice 2 -->
+                <div class="col-md-6 col-12 mb-3">
+                    <input type="radio" class="btn-check" name="options" id="optionB" autocomplete="off">
+                    <label for="optionB" class="btn btn-outline-dark rounded-pill w-100">Choice B</label>
+                </div>
             </div>
-            <div class="col-md-6 col-12">
-                <input type="radio" class="btn-check" name="options" id="optionB" autocomplete="off">
-                <label class="option-button rounded-3 d-block p-3" for="optionB">{quiz.choice}</label>
+            <div class="row mb-3">
+                <!-- Choice 3 -->
+                <div class="col-md-6 col-12 mb-3">
+                    <input type="radio" class="btn-check" name="options" id="optionC" autocomplete="off">
+                    <label for="optionC" class="btn btn-outline-dark rounded-pill w-100">Choice C</label>
+                </div>
+                <!-- Choice 4 -->
+                <div class="col-md-6 col-12 mb-3">
+                    <input type="radio" class="btn-check" name="options" id="optionD" autocomplete="off">
+                    <label for="optionD" class="btn btn-outline-dark rounded-pill w-100">Choice D</label>
+                </div>
             </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6 col-12 mb-md-0 mb-3">
-                <input type="radio" class="btn-check" name="options" id="optionC" autocomplete="off">
-                <label class="option-button rounded-3 d-block p-3" for="optionC">C. componentDidUpdate</label>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary rounded-pill">Submit</button>
             </div>
-            <div class="col-md-6 col-12">
-                <input type="radio" class="btn-check" name="options" id="optionD" autocomplete="off">
-                <label class="option-button rounded-3 d-block p-3" for="optionD">D. componentWillRecieveProps</label>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 
