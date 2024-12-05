@@ -1,6 +1,7 @@
 <h5 class="mb-4 text-center fw-bold">{{ quiz.text }}</h5>
 <form data-quiz-id="{{ quiz.id }}">
     <div class="row mb-3">
+        
         {% for choice in quiz.choice_set.all %}
             <div class="col-md-6 col-12 mb-3">
                 <input type="radio" class="btn-check" name="options" id="choice{{ choice.id }}" autocomplete="off">
