@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "newsguessr_app.quiz",
 ]
-
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -61,7 +60,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',         # Correct path to the database file
     }
 }
-print(DATABASES)
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",

@@ -9,15 +9,13 @@ class Daily_Challenge(models.Model):
     class Meta:
         ordering = ("-created_at",)
 
-    def __str__(self):
-        return self.title
     
 class Quiz(models.Model):
     # ForeignKey to Choice model for dynamic choices
     text = models.CharField(max_length=200, default="default text")
     daily_challenge = models.ForeignKey(Daily_Challenge, on_delete=models.SET_NULL, null=True, blank=True)
     def __str__(self):
-        return self.question_text
+        return self.text
 
 class Choice(models.Model):
     options = (

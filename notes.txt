@@ -6,6 +6,19 @@ in order to check if I need test, I can run --cov-report html --cov=./
 
 proxies are taken from https://free-proxy-list.net/#
 
+ERROR
+    django.core.exceptions.ImproperlyConfigured: settings.DATABASES is improperly configured. Please supply the ENGINE value. Check settings documentation for more details.
+    export DJANGO_SETTINGS_MODULE=newsguessr_app.settings.local
+FIX
+    export DJANGO_SETTINGS_MODULE=newsguessr_app.settings.local
+
+
+ERROR
+    django.core.exceptions.AppRegistryNotReady: Apps aren't loaded yet.
+FIX (in shell)
+    from django.core.wsgi import get_wsgi_application
+    application = get_wsgi_application()
+
 https://www.youtube.com/watch?v=rQXL9A0ST5k
 
 If Git is still tracking files that are listed in your .gitignore, it’s likely because these files were already added to the repository before the .gitignore rules were applied. Git only stops tracking files after they are removed from the repository's index (the staging area), even if they’re now listed in .gitignore.
