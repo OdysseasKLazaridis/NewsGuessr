@@ -18,12 +18,19 @@ def game(request):
 
     # Ensure the object exists and is passed to the template
     if todays_challenge:
-        first_quiz = todays_challenge.quiz_set.first()  # Fetch the first quiz
-        context = {'quiz': first_quiz}
+        quizzes = list(todays_challenge.quiz_set.all())
 
-    else:
-        context = {'error': 'No challenge found for today!'}
+        # Find the latest answered quiz based on cookies
+        answered_quiz_ids = [
+            int(key.split('_')[1]) for key in request.COOKIES.keys() 
+            if key.startswith('quiz_') and request.COOKIES[key]
+        ]
+        next_quiz = next((quiz for quiz in quizzes if quiz.id not in answered_quiz_ids), None)
 
+        if next_quiz:
+            context = {'quiz': next_quiz}
+        else:
+            context = {'message': 'You have completed all quizzes for today!'}
     return render(request, 'game/game.html', context)
 
 
@@ -35,6 +42,10 @@ def next_quiz(request, quiz_id):
         
         if not todays_challenge:
             return JsonResponse({'success': False, 'message': 'No Daily Challenge available for today.'})
+
+        # Save the current choice in cookies
+        choice_id = request.POST.get('choice')
+        response = JsonResponse({'success': True})
 
         # Find the next quiz
         quizzes = list(todays_challenge.quiz_set.all())

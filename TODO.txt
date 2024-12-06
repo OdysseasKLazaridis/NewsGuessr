@@ -9,6 +9,9 @@ TODO:
 
         Everytime that the user presses submit, the choice should be saved on cookies or sent back to the database
         Need to add different kinds of quizes such a slidebar   
+        When the user is done give him the results for the entire quiz and how he did compared to the other users
+        
+    process
 
 
 

@@ -14,11 +14,39 @@
 </div>
 
 <script>
-    // Function to fetch the next quiz and render it
-    function loadNextQuiz(quizId) {
+    document.addEventListener('submit', function (event) {
+        event.preventDefault();
+        // Extract data from the form
+        const form = event.target;
+        const quizId = form.dataset.quizId; // Get the quiz ID (make sure it's in the form element as a data attribute)
+        // Check if a choice is selected
+        const selectedChoice = form.querySelector('input[name="choice"]:checked');
+        if (selectedChoice) {
+            const choiceId = selectedChoice.value; // Get the selected choice ID
+            
+            // Create a cookie name based on both quizId and choiceId
+            const cookieName = `quiz_${quizId}=choice_${choiceId}`;
+            
+            // Set the cookie with both quizId and choiceId
+            document.cookie = `quiz_${quizId}=choice_${choiceId}; path=/; max-age=3600`; // Cookie will expire in 1 hour
+            
+            // Optionally, log the cookie to check if it's set
+            console.log(`Cookie set: ${quizId}=${choiceId}`);
+        } else {
+            console.log('No choice selected.');
+        }
+
+        document.cookie = "ntdtfyghjkln=value; path=/; max-age=3600; secure=false; samesite=lax";
+        // Log the cookie to confirm it's set
+        console.log('Cookie set:', document.cookie);
+        const formData = new FormData(form); // Form data including CSRF token and user choice
+    
+        // Send the form data via POST request
         fetch(`/next-quiz/${quizId}/`, {
-            method: 'GET',
+            method: 'POST',
             headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            body: formData,
+            credentials: 'same-origin', // Ensures cookies are sent
         })
         .then(response => response.json())
         .then(data => {
@@ -29,13 +57,6 @@
             }
         })
         .catch(error => console.error('Error fetching the next quiz:', error));
-    }
-
-    // Event listener for the Submit button
-    document.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const currentQuizId = event.target.dataset.quizId;
-        loadNextQuiz(currentQuizId);
     });
 </script>
 

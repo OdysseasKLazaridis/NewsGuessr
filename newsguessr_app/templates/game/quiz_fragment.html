@@ -1,11 +1,12 @@
 <h5 class="mb-4 text-center fw-bold">{{ quiz.text }}</h5>
-<form data-quiz-id="{{ quiz.id }}">
+<form method="POST"  data-quiz-id="{{ quiz.id }}">
+    {% csrf_token %}
     <div class="row mb-3">
         
         {% for choice in quiz.choice_set.all %}
             <div class="col-md-6 col-12 mb-3">
-                <input type="radio" class="btn-check" name="options" id="choice{{ choice.id }}" autocomplete="off">
-                <label for="choice{{ choice.id }}" class="btn btn-outline-dark rounded-pill w-100">
+                <input type="radio" class="btn-check" name="choice" id="{{ choice.id }}" value="{{ choice.id }}" autocomplete="off" required>
+                <label for="{{ choice.id }}" class="btn btn-outline-dark rounded-pill w-100">
                     {{ choice.name }}
                 </label>
             </div>

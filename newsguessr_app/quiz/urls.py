@@ -5,4 +5,6 @@ urlpatterns = [
     path("", views.HomeView.as_view(), name = "homepage"),
     path('game.html', views.game, name='game'),
     path('next-quiz/<int:quiz_id>/', views.next_quiz, name='next_quiz'),
+    
+
 ]
