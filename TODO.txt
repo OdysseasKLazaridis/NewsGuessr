@@ -5,6 +5,10 @@ TODO:
 
     webpage:
         make index be function based instead of class based
+        need to correct all the file names
+
+        Everytime that the user presses submit, the choice should be saved on cookies or sent back to the database
+        Need to add different kinds of quizes such a slidebar   
 
 
 
