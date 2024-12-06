@@ -3,6 +3,8 @@ TODO:
 
         Make newscraper a function with a main
 
-    
+    webpage:
+        make index be function based instead of class based
+
 
 

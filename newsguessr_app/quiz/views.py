@@ -41,7 +41,7 @@ def next_quiz(request, quiz_id):
         current_quiz_index = next((i for i, q in enumerate(quizzes) if q.id == int(quiz_id)), -1)
         
         if current_quiz_index == -1 or current_quiz_index + 1 >= len(quizzes):
-            return JsonResponse({'success': False, 'message': 'No more quizzes available.'})
+            return JsonResponse({'success': False, 'message': 'You completed the quiz.'})
         
         next_quiz = quizzes[current_quiz_index + 1]
 

@@ -31,3 +31,7 @@ git push
 
 mou efage mia wra to pws prosthetw ena akoma string se mia lista me string
 lame_words = [keyword] + lame_words
+
+
+when I want to run a python script in the django environment what I can do is 
+    /manage.py shell < edit_challenges.py
