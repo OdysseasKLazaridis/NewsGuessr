@@ -31,9 +31,7 @@ class Choice(models.Model):
         return self.name
     
     def add_one(self):
-        print(self.was_chosen)
         self.was_chosen += 1
-        print(self.was_chosen)
         print("---------------------")
         
 

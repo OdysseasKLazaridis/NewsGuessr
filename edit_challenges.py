@@ -31,96 +31,97 @@ def create_challenge(quizzes, date=None):
 
 quizzes = [
     {
-        'text': 'What is the capital of France?',
+        'text': 'Which of the following curse words was most frequently mentioned on Reddit this week?',
         'choices': [
-            {'name': 'Paris', 'mentions': 10, 'is_correct': True},
-            {'name': 'London', 'mentions': 5, 'is_correct': False},
-            {'name': 'Berlin', 'mentions': 2, 'is_correct': False},
-            {'name': 'Madrid', 'mentions': 3, 'is_correct': False}
+            {'name': 'F*ck', 'mentions': 1200, 'is_correct': True},
+            {'name': 'Sh*t', 'mentions': 900, 'is_correct': False},
+            {'name': 'D*mn', 'mentions': 700, 'is_correct': False},
+            {'name': 'B*tch', 'mentions': 500, 'is_correct': False}
         ]
     },
     {
-        'text': 'Who is the president of the USA?',
+        'text': 'Which subreddit mentioned the word "pizza" the most this week?',
         'choices': [
-            {'name': 'Joe Biden', 'mentions': 15, 'is_correct': True},
-            {'name': 'Donald Trump', 'mentions': 4, 'is_correct': False},
-            {'name': 'Barack Obama', 'mentions': 6, 'is_correct': False},
-            {'name': 'George Bush', 'mentions': 3, 'is_correct': False}
+            {'name': 'r/FoodPorn', 'mentions': 850, 'is_correct': True},
+            {'name': 'r/AskReddit', 'mentions': 600, 'is_correct': False},
+            {'name': 'r/Pizza', 'mentions': 750, 'is_correct': False},
+            {'name': 'r/food', 'mentions': 500, 'is_correct': False}
         ]
     },
     {
-        'text': 'What is the meaning of life?',
+        'text': 'Which meme format was most used across Reddit this week?',
         'choices': [
-            {'name': '42', 'mentions': 100, 'is_correct': True},
-            {'name': 'Eat pizza and nap', 'mentions': 5, 'is_correct': False},
-            {'name': 'To get more memes', 'mentions': 3, 'is_correct': False},
-            {'name': 'Have a pet rock', 'mentions': 2, 'is_correct': False}
+            {'name': 'Distracted Boyfriend', 'mentions': 1500, 'is_correct': True},
+            {'name': 'Mocking SpongeBob', 'mentions': 1200, 'is_correct': False},
+            {'name': 'Two Buttons', 'mentions': 1000, 'is_correct': False},
+            {'name': 'Woman Yelling at a Cat', 'mentions': 800, 'is_correct': False}
         ]
     },
     {
-        'text': 'What is the best meme of all time?',
+        'text': 'Which of the following topics had the most posts related to it on Reddit this week?',
         'choices': [
-            {'name': 'Distracted Boyfriend', 'mentions': 50, 'is_correct': True},
-            {'name': 'Grumpy Cat', 'mentions': 40, 'is_correct': False},
-            {'name': 'Doge', 'mentions': 30, 'is_correct': False},
-            {'name': 'Kermit Sipping Tea', 'mentions': 20, 'is_correct': False}
+            {'name': 'AI and Machine Learning', 'mentions': 2000, 'is_correct': True},
+            {'name': 'Cryptocurrency', 'mentions': 1800, 'is_correct': False},
+            {'name': 'Space Exploration', 'mentions': 1500, 'is_correct': False},
+            {'name': 'Climate Change', 'mentions': 1200, 'is_correct': False}
         ]
     },
     {
-        'text': 'What do you do when you see a dog?',
+        'text': 'Which of these phrases was used the most in Reddit posts this week?',
         'choices': [
-            {'name': 'Pet it and say "good dog"', 'mentions': 70, 'is_correct': True},
-            {'name': 'Ignore it', 'mentions': 5, 'is_correct': False},
-            {'name': 'Yell "doggo!" and run away', 'mentions': 3, 'is_correct': False},
-            {'name': 'Give it a meme', 'mentions': 20, 'is_correct': False}
+            {'name': 'No cap', 'mentions': 2200, 'is_correct': True},
+            {'name': 'Bet', 'mentions': 1800, 'is_correct': False},
+            {'name': 'FOMO', 'mentions': 1500, 'is_correct': False},
+            {'name': 'I’m dead', 'mentions': 1300, 'is_correct': False}
         ]
     },
     {
-        'text': 'What’s the best way to procrastinate?',
+        'text': 'Which movie or show had the most discussions this week on Reddit?',
         'choices': [
-            {'name': 'Watch cat videos', 'mentions': 100, 'is_correct': True},
-            {'name': 'Take a nap', 'mentions': 40, 'is_correct': False},
-            {'name': 'Stare at your screen pretending to work', 'mentions': 50, 'is_correct': False},
-            {'name': 'Start a new project you’ll never finish', 'mentions': 10, 'is_correct': False}
+            {'name': 'The Last of Us', 'mentions': 3000, 'is_correct': True},
+            {'name': 'House of the Dragon', 'mentions': 2200, 'is_correct': False},
+            {'name': 'Breaking Bad', 'mentions': 1800, 'is_correct': False},
+            {'name': 'Stranger Things', 'mentions': 1500, 'is_correct': False}
         ]
     },
     {
-        'text': 'What would you rather do?',
+        'text': 'Which word was mentioned most in discussions about technology this week?',
         'choices': [
-            {'name': 'Have unlimited tacos', 'mentions': 80, 'is_correct': True},
-            {'name': 'Get free WiFi forever', 'mentions': 40, 'is_correct': False},
-            {'name': 'Be a professional meme creator', 'mentions': 20, 'is_correct': False},
-            {'name': 'Binge-watch Netflix for a day', 'mentions': 30, 'is_correct': False}
+            {'name': 'AI', 'mentions': 2500, 'is_correct': True},
+            {'name': 'Quantum Computing', 'mentions': 1800, 'is_correct': False},
+            {'name': 'Bitcoin', 'mentions': 2200, 'is_correct': False},
+            {'name': 'Electric Vehicles', 'mentions': 1700, 'is_correct': False}
         ]
     },
     {
-        'text': 'What is the ultimate breakfast food?',
+        'text': 'Which word was mentioned the most in Reddit posts about "memes" this week?',
         'choices': [
-            {'name': 'Pancakes with syrup', 'mentions': 90, 'is_correct': True},
-            {'name': 'Bacon', 'mentions': 70, 'is_correct': False},
-            {'name': 'Avocado toast', 'mentions': 50, 'is_correct': False},
-            {'name': 'Cereal with milk', 'mentions': 40, 'is_correct': False}
+            {'name': 'Dank', 'mentions': 2500, 'is_correct': True},
+            {'name': 'Funny', 'mentions': 2100, 'is_correct': False},
+            {'name': 'Meme', 'mentions': 1800, 'is_correct': False},
+            {'name': 'LOL', 'mentions': 1500, 'is_correct': False}
         ]
     },
     {
-        'text': 'What’s the real secret to success?',
+        'text': 'Which emoji was used the most in Reddit posts this week?',
         'choices': [
-            {'name': 'Hard work and dedication', 'mentions': 60, 'is_correct': False},
-            {'name': 'Memes and coffee', 'mentions': 80, 'is_correct': True},
-            {'name': 'Pretend to know what you’re doing', 'mentions': 20, 'is_correct': False},
-            {'name': 'Bribing your way to the top', 'mentions': 30, 'is_correct': False}
+            {'name': '😂', 'mentions': 3500, 'is_correct': True},
+            {'name': '🔥', 'mentions': 2500, 'is_correct': False},
+            {'name': '😎', 'mentions': 2000, 'is_correct': False},
+            {'name': '🤯', 'mentions': 1500, 'is_correct': False}
         ]
     },
     {
-        'text': 'What do you do when you’re bored?',
+        'text': 'Which video game had the most discussions on Reddit this week?',
         'choices': [
-            {'name': 'Scroll through TikTok', 'mentions': 80, 'is_correct': True},
-            {'name': 'Solve a Rubik’s Cube', 'mentions': 20, 'is_correct': False},
-            {'name': 'Play an online game', 'mentions': 50, 'is_correct': False},
-            {'name': 'Take a nap', 'mentions': 10, 'is_correct': False}
+            {'name': 'Elden Ring', 'mentions': 2800, 'is_correct': True},
+            {'name': 'Minecraft', 'mentions': 2500, 'is_correct': False},
+            {'name': 'Fortnite', 'mentions': 2200, 'is_correct': False},
+            {'name': 'Call of Duty', 'mentions': 2000, 'is_correct': False}
         ]
     }
 ]
+
 
 
 create_challenge(date=date.today(), quizzes=quizzes)

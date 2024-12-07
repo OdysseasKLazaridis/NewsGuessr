@@ -11,6 +11,10 @@ Reddit Rewind
 <div class="container text-center">
     <div class="d-grid gap-2 col-6 mx-auto">
         <!-- Conditionally disable the button and set the tooltip text -->
+
+        <p class="game-description">
+            Reddit Rewind scrapes the most interesting and quirky facts about words and phrases that have made waves across Reddity
+            Also I was waaay to bored when making this</p>
         <div  tabindex="0" data-toggle="tooltip" title="{% if has_challenge %}Play the challenge{% else %}No challenge today senior!{% endif %}">
             <a href="{% if has_challenge %}{% url 'game' %}{% else %}#{% endif %}" 
             class="rounded-pill btn-lg btn {% if has_challenge %}btn-dark{% else %}btn-secondary disabled{% endif %}  w-100" >
@@ -19,8 +23,6 @@ Reddit Rewind
         </div>
         <a href='login' type="button" class="btn btn-outline-dark rounded-pill" data-toggle="tooltip" data-placement="top" title="yooo">Log In</a>
         <a href='register' class="btn btn-outline-dark rounded-pill">Sign Up</a>
-        <p>run "./manage.py shell < edit_challenges.py" if there is no challenge today and the play button is grey</p>
-        <p>If play button works but the question is not shown probably its because it reads the cookies</p>
     </div>
 </div>
 
