@@ -54,6 +54,8 @@ def game(request):
 
 
 def next_quiz(request, quiz_id):
+
+    print("too")
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         # Fetch today's challenge
         today = date.today()

@@ -4,14 +4,22 @@ TODO:
         Make newscraper a function with a main
 
     webpage:
-        make index be function based instead of class based
+        eventually I have to settle in between class based views and function based views
+
         need to correct all the file names
 
-        Everytime that the user presses submit, the choice should be saved on cookies or sent back to the database
         Need to add different kinds of quizes such a slidebar   
-        When the user is done give him the results for the entire quiz and how he did compared to the other users
 
-        When the page is 
+        When the user is done give him the results for the entire quiz and how he did compared to the other users
+        Check when logging in the homepage if the quiz is alreaday completed. In that case instead of play button it should show "see results/see results"
+
+        quiz folder should be renamed to challenge
+
+        1)create user model where there will be stored all his results
+
+        also  each daily challenge will have in the model stored all the stats associated with it which will be updated every lets say
+        10 users have filled the quiz
+
     process
 
 

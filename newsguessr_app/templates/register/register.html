@@ -5,9 +5,9 @@
 {% endblock %}
 {% load crispy_forms_tags%}
 {% block template %}
-    <form  method="POST" class="form-group">
+    <form  method="POST" class="from-group">
         {% csrf_token %}
         {{ form|crispy}}  <!-- Render form fields as paragraph elements -->
-        <button class="form-with-validation" class="btn btn-success">Register</button>
+        <button class="form-with-validation btn btn-success">Register</button>
     </form>
 {% endblock %}

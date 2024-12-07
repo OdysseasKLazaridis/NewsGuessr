@@ -1,0 +1,5 @@
+The idea is that the player after completing the quiz should be able to see what others voted as well as the statistics behind the questions he answered
+
+the other idea is that as soon as he answers each questions the solution is shown and the stats for a few seconds
+and then the page is automatically redirected to the next quiz
+
