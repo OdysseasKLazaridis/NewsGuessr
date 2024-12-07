@@ -3,3 +3,6 @@ The idea is that the player after completing the quiz should be able to see what
 the other idea is that as soon as he answers each questions the solution is shown and the stats for a few seconds
 and then the page is automatically redirected to the next quiz
 
+Maybe an idea would be to add something like what was seen on Millionaire tv show where you could use 50/50 or see what others answered
+(boh8eia koinou)
+

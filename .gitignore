@@ -9,4 +9,4 @@
 venv/
 data
 all_words.npz
-README.txt
+.env

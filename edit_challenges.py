@@ -1,9 +1,9 @@
-from newsguessr_app.quiz.models import Daily_Challenge, Quiz, Choice
+from redditrewind_app.quiz.models import Daily_Challenge, Quiz, Choice
 from datetime import date
 import django
 import os
 # Set up Django settings
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'newsguessr_app.settings.local')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'redditrewind_app.settings.local')
 django.setup()
 def create_challenge(quizzes, date = date.today):
     Daily_Challenge.objects.filter(challenge_date=date).delete()
