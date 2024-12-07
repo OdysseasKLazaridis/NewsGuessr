@@ -5,8 +5,10 @@
 {% endblock %}
 {% load crispy_forms_tags%}
 {%block template%}
-<formm method="post" class="from-group">
-    {csrf_token}
+<form method="post" class="from-group">
+    {%csrf_token%}
     {{form|crispy}}
+    <p> Don't have an account? Don't be a bitch. Create an account here <a href='/register'>here</a></p>
+    <button type="submit" class="btn btn-success"> Login</button>
 </from>
 {% endblock %}
