@@ -18,14 +18,27 @@ class Quiz(models.Model):
     def __str__(self):
         return self.text
 
+        
+
 class Choice(models.Model):
     name = models.CharField(max_length=100)  # The display name of the choice
     mentions = models.IntegerField() # The value that will be saved to the database
+    was_chosen = models.IntegerField(default=0) #The value will store how many times a user chose this answer
     is_correct = models.BooleanField(default=False)
     quiz = models.ForeignKey(Quiz, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
+    
+    def add_one(self):
+        print(self.was_chosen)
+        self.was_chosen += 1
+        print(self.was_chosen)
+        print("---------------------")
+        
+
+        self.save()
+        print("I did it")
 
 
 

@@ -2,16 +2,30 @@ from redditrewind_app.quiz.models import Daily_Challenge, Quiz, Choice
 from datetime import date
 import django
 import os
+import random
 # Set up Django settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'redditrewind_app.settings.local')
 django.setup()
-def create_challenge(quizzes, date = date.today):
+def create_challenge(quizzes, date=None):
+    # Set default date to today if no date is provided
+    if date is None:
+        date = date.today()
+
+    # Delete existing challenge for the given date
     Daily_Challenge.objects.filter(challenge_date=date).delete()
 
-    t, created = Daily_Challenge.objects.update_or_create(challenge_date=date)
-    t.save()
+    # Create or update the challenge for the given date
+    challenge, created = Daily_Challenge.objects.update_or_create(challenge_date=date)
+
+    # Loop through quizzes and create quiz and choices
     for quiz in quizzes:
-        q = t.quiz_set.create(text=quiz['text']) 
+        # Create the quiz
+        q = challenge.quiz_set.create(text=quiz['text'])
+        
+        # Shuffle the choices so that the order is random
+        random.shuffle(quiz['choices'])
+
+        # Create the choices for the quiz
         for choice in quiz['choices']:
             q.choice_set.create(name=choice['name'], mentions=choice['mentions'], is_correct=choice['is_correct'])
 

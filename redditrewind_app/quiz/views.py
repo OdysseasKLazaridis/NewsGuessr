@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, TemplateView
-from .models import Daily_Challenge, Quiz
+from .models import Daily_Challenge, Quiz, Choice
 from datetime import date
 from django.http import JsonResponse
 
@@ -69,6 +69,7 @@ def next_quiz(request, quiz_id):
         current_quiz_index = next((i for i, q in enumerate(quizzes) if q.id == int(quiz_id)), -1)
         
         if current_quiz_index == -1 or current_quiz_index + 1 >= len(quizzes):
+            submit_choices(request)
             return JsonResponse({'success': False, 'message': 'You completed the quiz.'})
         
         next_quiz = quizzes[current_quiz_index + 1]
@@ -79,3 +80,19 @@ def next_quiz(request, quiz_id):
 
         return JsonResponse({'success': True, 'html': html})
     return JsonResponse({'success': False, 'message': 'Invalid request.'})
+
+def submit_choices(request):
+    today = date.today()
+    todays_challenge = Daily_Challenge.objects.filter(challenge_date=today).first()
+    quizzes = list(todays_challenge.quiz_set.all())
+    for quiz in quizzes:
+        print("yooo")
+        cookie_name = "quiz_" + str(quiz.id)
+        choice_id = request.COOKIES.get(cookie_name)
+        choice = Choice.objects.get(id=choice_id)
+        print(choice.id)
+        choice.add_one()
+    return
+
+
+
