@@ -1,0 +1,12 @@
+{%extends "../base/base.html"%}
+
+{%block title%}
+    Reddit Rewind
+{% endblock %}
+{% load crispy_forms_tags%}
+{%block template%}
+<formm method="post" class="from-group">
+    {csrf_token}
+    {{form|crispy}}
+</from>
+{% endblock %}

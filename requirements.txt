@@ -15,10 +15,13 @@ cloudpathlib==0.20.0
 confection==0.1.5
 contourpy==1.3.0
 coverage==7.6.4
+crispy-bootstrap5==2024.10
 cssselect==1.2.0
 cycler==0.12.1
 cymem==2.0.8
+dj-database-url==2.3.0
 Django==5.1.2
+django-crispy-forms==2.3
 factory_boy==3.3.1
 fake-useragent==1.5.1
 Faker==30.8.2

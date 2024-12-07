@@ -8,7 +8,7 @@ def register(response):
         form = UserCreationForm(response.POST)
         if form.is_valid():
             form.save()
-            return redirect("homepage")
+            return redirect("index")
     else:
         form=UserCreationForm()
     form = UserCreationForm()

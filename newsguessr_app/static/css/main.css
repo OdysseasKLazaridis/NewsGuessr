@@ -22,7 +22,13 @@ body {
     color: #FF5700;
 }
 
-.logo{
+.logo {
     font-family: "Reddit Mono", monospace;
-    font-weight: 500;
-}
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle text shadow for depth */
+    margin-top: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }

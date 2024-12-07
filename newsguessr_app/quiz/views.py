@@ -1,17 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, TemplateView
 from .models import Daily_Challenge, Quiz
 from datetime import date
 from django.http import JsonResponse
 
 # Create your views here.
-class HomeView(ListView):
-    model = Quiz
-    template_name = "quiz/index.html"
+class HomeView(TemplateView):
+    template_name = "index/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Fetch today's challenge
+        today = date.today()
+        todays_challenge = Daily_Challenge.objects.filter(challenge_date=today).first()
+
+        # Add context to check if there's a challenge for today
+        context['has_challenge'] = bool(todays_challenge)  # True if there's a challenge, False if not
+        return context
+
 
 def game(request):
-    from datetime import date
-
     # Fetch today's Daily Challenge
     today = date.today()
     todays_challenge = Daily_Challenge.objects.filter(challenge_date=today).first()
@@ -25,12 +34,22 @@ def game(request):
             int(key.split('_')[1]) for key in request.COOKIES.keys() 
             if key.startswith('quiz_') and request.COOKIES[key]
         ]
+        
+        # Find the next quiz that hasn't been answered yet
         next_quiz = next((quiz for quiz in quizzes if quiz.id not in answered_quiz_ids), None)
 
         if next_quiz:
+            # If there are still unanswered quizzes, render the next quiz
             context = {'quiz': next_quiz}
         else:
-            context = {'message': 'You have completed all quizzes for today!'}
+            # If all quizzes have been answered, show a message
+            context = {'message': 'You have completed the challenge!'}
+            return render(request, 'game/game.html', context)
+    else:
+           
+        return redirect('index')  # Redirect to the homepage or a custom 'no challenge' page
+
+
     return render(request, 'game/game.html', context)
 
 
@@ -42,10 +61,6 @@ def next_quiz(request, quiz_id):
         
         if not todays_challenge:
             return JsonResponse({'success': False, 'message': 'No Daily Challenge available for today.'})
-
-        # Save the current choice in cookies
-        choice_id = request.POST.get('choice')
-        response = JsonResponse({'success': True})
 
         # Find the next quiz
         quizzes = list(todays_challenge.quiz_set.all())

@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("newsguessr_app.quiz.urls")),
     path("", include("newsguessr_app.register.urls")),
+    path("", include("django.contrib.auth.urls")), 
 ]
 

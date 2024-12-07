@@ -3,11 +3,11 @@
 {% block title %}
     Create an account
 {% endblock %}
-
+{% load crispy_forms_tags%}
 {% block template %}
     <form  method="POST" class="form-group">
         {% csrf_token %}
-        {{ form }}  <!-- Render form fields as paragraph elements -->
+        {{ form|crispy}}  <!-- Render form fields as paragraph elements -->
         <button class="form-with-validation" class="btn btn-success">Register</button>
     </form>
 {% endblock %}
