@@ -10,8 +10,6 @@ $(document).ready(function() {
   // Check if the multi-step form exists
   if ($('#multi-step-form').length) {
     // Initially hide all steps except the first one
-    console.log($('#multi-step-form'));
-    console.log($('#multi-step-form').find('.step'));
     $(".step").slice(1).hide()
 
     $(".next-step").click(function() {
@@ -28,6 +26,10 @@ $(document).ready(function() {
           $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInRight"); // Show the next step with fadeInRight animation
           updateProgressBar(); // Update the progress bar after the step transition
         }, 500); // Make sure this matches the duration of the fadeOut animation
+      } else if (currentStep = 10){
+        
+        window.location.href = 'finished';
+
       }
     });
 
@@ -45,7 +47,7 @@ $(document).ready(function() {
           $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInLeft"); // Show the previous step with fadeInLeft animation
           updateProgressBar(); // Update the progress bar after the step transition
         }, 500); // Make sure this matches the duration of the fadeOut animation
-      }
+      } 
     });
 
     // Initial call to update the progress bar
@@ -60,7 +62,9 @@ document.addEventListener('submit', function (event) {
   
   // Extract data from the form
   const form = event.target;
-  const quizId = form.dataset.quizId; // Get the quiz ID (make sure it's in the form element as a data attribute)
+  const submitButton = form.querySelector('.next-step'); // Get the submit button
+    
+  const quizId = submitButton.getAttribute('data-quiz-id');  // Get the quiz ID (make sure it's in the form element as a data attribute)
   
   // Check if a choice is selected
   const selectedChoice = form.querySelector('input[name="choice"]:checked');
@@ -82,22 +86,5 @@ document.addEventListener('submit', function (event) {
   // Log the cookie to confirm it's set
   console.log('Cookie set:', document.cookie);
   
-  const formData = new FormData(form); // Form data including CSRF token and user choice
-
-  // // Send the form data via POST request
-  // fetch(`/next-quiz/${quizId}/`, {
-  //   method: 'POST',
-  //   headers: { 'X-Requested-With': 'XMLHttpRequest' },
-  //   body: formData,
-  //   credentials: 'same-origin', // Ensures cookies are sent
-  // })
-  // .then(response => response.json())
-  // .then(data => {
-  //   if (data.success) {
-  //     document.getElementById('quiz-container').innerHTML = data.html;
-  //   } else {
-  //     document.getElementById('quiz-container').innerHTML = `<p>${data.message}</p>`;
-  //   }
-  // })
-  // .catch(error => console.error('Error fetching the next quiz:', error));
+  const formData = new FormData(form); // Form data including CSRF token and user c
 });

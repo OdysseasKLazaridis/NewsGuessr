@@ -1,0 +1,15 @@
+{% extends "../base/base.html"%}
+
+{% block title%}
+    Log In
+{% endblock %}
+{% load crispy_forms_tags%}
+{% block template%}
+    <form method="POST" class="from-group">
+        {%csrf_token%}
+        {{form|crispy}}
+        <p> You did it dude</p>
+        <p> Press the button for no  reason</p>
+        <button type="submit" class="btn btn-success"> </button>
+    </from>
+{% endblock %}
