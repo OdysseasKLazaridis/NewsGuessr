@@ -40,7 +40,7 @@ def game(request):
 
         if next_quiz:
             # If there are still unanswered quizzes, render the next quiz
-            context = {'quiz': next_quiz}
+            context = {'todays_challenge': todays_challenge}
         else:
             # If all quizzes have been answered, show a message
             context = {'message': 'You have completed the challenge!'}
@@ -49,7 +49,7 @@ def game(request):
            
         return redirect('index')  # Redirect to the homepage or a custom 'no challenge' page
 
-
+    print(todays_challenge)
     return render(request, 'game/game.html', context)
 
 
