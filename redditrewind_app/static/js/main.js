@@ -11,12 +11,15 @@ if (nextStepSpans.length > 0) {
 }
 
 
-const firstPrevStepSpan = document.querySelector('.prev-step');
+const firstPrevStepSpans = Array.from(document.querySelectorAll('.prev-step'));
 
-if (firstPrevStepSpan) {
+// Check if there are any .prev-step elements
+if (firstPrevStepSpans.length > 0) {
+  const firstPrevStepSpan = firstPrevStepSpans[0]; // Access the first element
   firstPrevStepSpan.style.pointerEvents = 'none'; // Disable clicks
   firstPrevStepSpan.style.opacity = '0.5'; // Optional: dim the button to indicate it's disabled
 }
+
 
 function displayStep(stepNumber) {
   if (stepNumber >= 1 && stepNumber <= questions) {
@@ -50,9 +53,6 @@ $(document).ready(function() {
         // Apply fade out animation and wait for it to complete
         $(".step-" + currentStep).addClass("animate__animated animate__fadeOutLeft");
         
-        // Increase the step number
-        
-
         // After the fade-out animation completes (500ms), change the step
         setTimeout(function() {
           $(".step").removeClass("animate__animated animate__fadeOutLeft").hide(); // Hide all steps
@@ -65,29 +65,22 @@ $(document).ready(function() {
     
         // Check if a choice is selected
         const selectedChoice = form.querySelector('input[name="choice"]:checked');
-        if (selectedChoice) {
-          const choiceId = selectedChoice.value; // Get the selected choice ID
-        
-          // Set the cookie with both quizId and choiceId
-          document.cookie = `quiz_${quizId}=${choiceId}; path=/; max-age=3600`; // Cookie will expire in 1 hour
-
-
-        
-        } else {
-          console.log('No choice selected.');
-        }
-
-        
-        } else {
-          console.log('No choice selected.');
-        }
         console.log(selectedChoice)
-        currentStep++;
-        if (selectedChoice) {
-            selectedChoice.checked = false;  // Only uncheck if the element is found
+          if (selectedChoice) {
+            const choiceId = selectedChoice.value; // Get the selected choice ID
+          
+            // Set the cookie with both quizId and choiceId
+            document.cookie = `quiz_${quizId}=${choiceId}; path=/; max-age=3600`; // Cookie will expire in 1 hour
+            selectedChoice.checked = false; 
+          } else {
+            console.log('No choice selected.');
+          }
+
+        
         } else {
-            console.log('No choice selected');
+          console.log('No choice selected.');
         }
+        currentStep++;
     });
 
     $(".prev-step").click(function() {
@@ -113,15 +106,11 @@ $(document).ready(function() {
           const choiceId = selectedChoice.value; // Get the selected choice ID
           // Set the cookie with both quizId and choiceId
           document.cookie = `quiz_${quizId}=${choiceId}; path=/; max-age=3600`; // Cookie will expire in 1 hour
+          selectedChoice.checked = false;  // Only uncheck if the element is found
         } else {
           console.log('No choice selected.');
         }
         currentStep--;
-        if (selectedChoice) {
-          selectedChoice.checked = false;  // Only uncheck if the element is found
-      } else {
-          console.log('No choice selected');
-      }
       } 
     });
     
@@ -163,20 +152,4 @@ $(document).ready(function() {
 
 
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  const radioButtons = document.querySelectorAll('input[type="radio"][name="choice"]');
-  let lastChecked = null; // Keep track of the last checked radio button
-
-  radioButtons.forEach(radio => {
-      radio.addEventListener('click', function () {
-          if (this === lastChecked) {
-              this.checked = false; // Uncheck the radio button
-              lastChecked = null;  // Reset the last checked button
-          } else {
-              lastChecked = this; // Update the last checked button
-          }
-      });
-  });
-});
 
