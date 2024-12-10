@@ -13,8 +13,8 @@ Reddit Rewind
         <!-- Conditionally disable the button and set the tooltip text -->
 
         <p class="game-description">
-            Reddit Rewind scrapes the most interesting and quirky facts about words and phrases that have made waves across Reddit.
-            Also I was waaay to bored when making this</p>
+            Reddit Rewind scrapes the most interesting and quirky facts about words and phrases that have made waves across Reddit every week.
+            </p>
         <div  tabindex="0" data-toggle="tooltip" title="{% if has_challenge %}Play the challenge{% else %}No challenge today senior!{% endif %}">
             <a href="{% if has_challenge %}{% url 'game' %}{% else %}#{% endif %}" 
             class="rounded-pill btn-lg btn {% if has_challenge %}btn-dark{% else %}btn-secondary disabled{% endif %}  w-100" >

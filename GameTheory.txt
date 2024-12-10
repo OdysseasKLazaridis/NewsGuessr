@@ -6,3 +6,5 @@ and then the page is automatically redirected to the next quiz
 Maybe an idea would be to add something like what was seen on Millionaire tv show where you could use 50/50 or see what others answered
 (boh8eia koinou)
 
+Be able to answer the same questionaire for your subreddit. Make sure there is at least a limit of comments and give 
+a disclaimer that there might not be enough cimments for good statistics

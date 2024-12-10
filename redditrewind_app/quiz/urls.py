@@ -5,4 +5,5 @@ urlpatterns = [
     path("", views.HomeView.as_view(), name = "index"),
     path('game.html', views.game, name='game'),
     path('finished', views.finished, name='finished'),
+    path('submit_choices', views.submit_choices, name='submit_choices'),
 ]

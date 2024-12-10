@@ -70,7 +70,8 @@ body {
     height: 30px;
     border-radius: 50%;
     background-color: #fff;
-    border: 2px solid #007bff;
+    color:  #FF5700;
+    border: 2px solid  #FF5700;
     line-height: 30px;
     font-weight: bold;
     display: flex;
@@ -79,6 +80,8 @@ body {
     margin-bottom: 10px;
     cursor: pointer; /* Added cursor pointer */
   }
+
+    
   
   .step-line {
     position: absolute;
@@ -86,10 +89,15 @@ body {
     left: 50px;
     width: calc(100% - 100px);
     height: 2px;
-    background-color: #007bff;
+    background-color:  #FF5700;
     z-index: -1;
   }
   
+  .progress-bar{
+    background-color: #FF5700
+  }
   #multi-step-form{
     overflow-x: hidden;
   }
+
+

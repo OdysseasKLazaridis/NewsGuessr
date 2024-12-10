@@ -23,6 +23,7 @@ class HomeView(TemplateView):
 def game(request):
     # Fetch today's Daily Challenge
     today = date.today()
+    print(today) 
     todays_challenge = Daily_Challenge.objects.filter(challenge_date=today).first()
 
     # Ensure the object exists and is passed to the template
@@ -59,6 +60,7 @@ def submit_choices(request):
     todays_challenge = Daily_Challenge.objects.filter(challenge_date=today).first()
     quizzes = list(todays_challenge.quiz_set.all())
     for quiz in quizzes:
+        print(quiz.id)
         cookie_name = "quiz_" + str(quiz.id)
         choice_id = request.COOKIES.get(cookie_name)
         choice = Choice.objects.get(id=choice_id)
