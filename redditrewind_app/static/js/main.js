@@ -161,6 +161,7 @@ function checkAllCookies() {
   const missingQuizIds = quizIds.filter(quizId => {
     return !document.cookie.includes(`quiz_${quizId}=`);
   });
+  updateCurrentStepUI();
 
   if (missingQuizIds.length === 0) {
     console.log('All quizzes are answered!');
@@ -189,6 +190,18 @@ function checkAllCookies() {
  }
 }
 
+
+function updateCurrentStepUI() {
+  // Get all step-circle elements
+  const stepCircles = document.querySelectorAll('.step-circle');
+  
+  // Loop through all step circles and apply/remove the "active" class
+  stepCircles.forEach((circle, index) => {
+    if (index + 1 === currentStep) {
+      circle.classList.add('active'); // Add active class to the current step
+    } 
+  });
+}
 
 
 
