@@ -1,6 +1,23 @@
 var currentStep = 1;
 var questions = 10;
 
+
+const nextStepSpans = Array.from(document.querySelectorAll('.next-step'));
+
+if (nextStepSpans.length > 0) {
+  const lastNextStepSpan = nextStepSpans[nextStepSpans.length - 1]; // Get the last element
+  lastNextStepSpan.style.pointerEvents = 'none'; // Disable clicks
+  lastNextStepSpan.style.opacity = '0.5'; // Optional: dim the button to indicate it's disabled
+}
+
+
+const firstPrevStepSpan = document.querySelector('.prev-step');
+
+if (firstPrevStepSpan) {
+  firstPrevStepSpan.style.pointerEvents = 'none'; // Disable clicks
+  firstPrevStepSpan.style.opacity = '0.5'; // Optional: dim the button to indicate it's disabled
+}
+
 function displayStep(stepNumber) {
   if (stepNumber >= 1 && stepNumber <= questions) {
     $(".step-" + currentStep).hide();
@@ -13,8 +30,6 @@ function displayStep(stepNumber) {
 // Define the updateProgressBar function
 var updateProgressBar = function() {
   var progressPercentage = ((currentStep - 1) / 9) * 10* questions;
-  console.log("currentStep:", currentStep);
-  console.log("Step Circle:", $(".step-" + currentStep).find(".step-circle"));
   $(".progress-bar").css("width", progressPercentage + "%");
   $(".step-" + currentStep).find(".step-circle").css({
     "background-color": "#FF5700",
@@ -31,6 +46,7 @@ $(document).ready(function() {
 
     $(".next-step").click(function() {
       if (currentStep < questions) {
+        
         // Apply fade out animation and wait for it to complete
         $(".step-" + currentStep).addClass("animate__animated animate__fadeOutLeft");
         
@@ -46,22 +62,32 @@ $(document).ready(function() {
 
         const form = $("#multi-step-form")[0];
         var quizId = $(".step-" + currentStep).find("[quiz-id]").attr("quiz-id");
-      
-      
-        console.log('No choice selected.');
+    
         // Check if a choice is selected
         const selectedChoice = form.querySelector('input[name="choice"]:checked');
         if (selectedChoice) {
           const choiceId = selectedChoice.value; // Get the selected choice ID
-          console.log(' choice selected.');
+        
           // Set the cookie with both quizId and choiceId
           document.cookie = `quiz_${quizId}=${choiceId}; path=/; max-age=3600`; // Cookie will expire in 1 hour
+
+
+        
         } else {
           console.log('No choice selected.');
         }
+
+        
+        } else {
+          console.log('No choice selected.');
+        }
+        console.log(selectedChoice)
         currentStep++;
-        selectedChoice.checked = false;
-      }
+        if (selectedChoice) {
+            selectedChoice.checked = false;  // Only uncheck if the element is found
+        } else {
+            console.log('No choice selected');
+        }
     });
 
     $(".prev-step").click(function() {
@@ -81,19 +107,21 @@ $(document).ready(function() {
         var quizId = $(".step-" + currentStep).find("[quiz-id]").attr("quiz-id");
       
       
-        console.log('No choice selected.');
         // Check if a choice is selected
         const selectedChoice = form.querySelector('input[name="choice"]:checked');
         if (selectedChoice) {
           const choiceId = selectedChoice.value; // Get the selected choice ID
-          console.log(' choice selected.');
           // Set the cookie with both quizId and choiceId
           document.cookie = `quiz_${quizId}=${choiceId}; path=/; max-age=3600`; // Cookie will expire in 1 hour
         } else {
           console.log('No choice selected.');
         }
         currentStep--;
-        selectedChoice.checked = false;
+        if (selectedChoice) {
+          selectedChoice.checked = false;  // Only uncheck if the element is found
+      } else {
+          console.log('No choice selected');
+      }
       } 
     });
     
@@ -134,31 +162,7 @@ $(document).ready(function() {
 });
 
 
-// Wait for the DOM to be fully loaded before adding event listeners
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form'); // Ensure you select the correct form
-  const saveNextButton = document.querySelector(".step-" + currentStep + " .next-step");
 
-  if (!saveNextButton) {
-      console.error("Save & Next button not found for current step.");
-      return;
-  }
-
-  // Add an event listener to check for changes in the form (both selection and deselection)
-  form.addEventListener('change', () => {
-      // Find the selected choice (checked radio button)
-      const selectedChoice = form.querySelector('input[name="choice"]:checked');
-
-      // Update the button text based on whether a choice is selected or not
-      if (selectedChoice) {
-          console.log("Choice was selected");
-          saveNextButton.textContent = "Save & Next"; // Change to "Save & Next" if a choice is selected
-      } else {
-          console.log("Choice was not selected");
-          saveNextButton.textContent = "Next"; // Change back to "Next" if no choice is selected
-      }
-  });
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   const radioButtons = document.querySelectorAll('input[type="radio"][name="choice"]');
