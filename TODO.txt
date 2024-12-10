@@ -24,6 +24,8 @@ TODO:
 
         find a way to check the answered that has been chosen
 
+        IMPORTANT±! PUT AN INDICATION ONTO EVERY CIRCLE WETHER IT ANSWERED OR NOT
+
     process
 
 
