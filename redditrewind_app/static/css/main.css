@@ -101,3 +101,42 @@ body {
   }
 
 
+/* Ensure the form doesn't clip any child elements */
+form#multi-step-form {
+  position: relative; /* Allows positioning of child elements */
+  overflow: visible; /* Prevent clipping of expanded elements */
+  min-height: 200px; /* Adjust based on the content height */
+}
+
+/* Ensure the individual quiz container inside the form also allows overflow */
+.step {
+  overflow: visible; /* Allow content to expand */
+  position: relative; /* Makes sure scaled elements stay on top */
+}
+
+/* Additional hover effect on quiz choices */
+.answer-option {
+  position: relative;
+  min-height: 60px; /* Prevent clipping of scaled content */
+  overflow: visible; /* Ensure the choice is not clipped */
+}
+
+.answer-option label {
+  display: block;
+  padding: 10px 20px; /* Optional: Add padding to the label for better styling */
+    text-align: center; /* Center the text inside the button */
+  transition: all 0.3s ease;
+  width: 100%; /* Make it fill the container's width */
+}
+
+.answer-option:hover label {
+  transform: scale(1.1); /* Scale up the label */
+  background-color: #f0ad4e; /* Change background color */
+  color: white; /* Change text color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+}
+
+.answer-option:hover {
+  z-index: 1; /* Ensure hovered item stays on top */
+}
+{

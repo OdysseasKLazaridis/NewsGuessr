@@ -5,7 +5,7 @@
             
             {% for choice in quiz.choice_set.all %}
             
-                <div class="col-md-6 col-12 mb-3">
+                <div class="answer-option col-md-6 col-12 mb-3">
                     <input type="radio" class="btn-check" name="choice" id="{{ choice.id }}" value="{{ choice.id }}" autocomplete="off" required>
                     <label for="{{ choice.id }}" class="btn btn-outline-dark rounded-pill w-100">
                         {{ choice.name }}
