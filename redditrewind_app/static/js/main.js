@@ -56,8 +56,6 @@ $(document).ready(function() {
   if ($('#multi-step-form').length) {
     // Initially hide all steps except the first one
     $(".step").slice(1).hide()
-
-
     
     $(".next-step").click(function() {
       if (currentStep < questions) {
@@ -174,13 +172,21 @@ function checkAllCookies() {
     button.style.pointerEvents = 'auto'; // Enable interactions
     button.style.opacity = '1';       // Set Full opacity
     button.disabled = false;            
+    button.textContent = `Done (${questions-missingQuizIds}/${questions})`;    
     });
     return true
   } else {
     console.log('Not all quizzes are answered. Missing quiz IDs:', missingQuizIds);
     // Optionally disable a "Submit" button
-    document.querySelector('.submit').disabled = true; // Example
-  }
+
+    const submitButtons = document.querySelectorAll('button[type="submit"]');
+
+    // Disable and set opacity for each submit button
+    submitButtons.forEach(button => {
+      button.textContent = `Done (${questions - missingQuizIds.length}/${questions})`;  
+  });
+  
+ }
 }
 
 

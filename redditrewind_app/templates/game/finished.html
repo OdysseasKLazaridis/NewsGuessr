@@ -7,11 +7,14 @@
 {% load crispy_forms_tags %}
 
 {% block template %}
-    <form method="POST" class="form-group">
+    <form method="POST" class=" text-center form-group">
         {% csrf_token %}
         {{ form|crispy }}
         <p>You did it dude</p>
         <p>Press the button for no reason</p>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <p>(or delete your cookies)</p>
+        <div class="text-center d-flex justify-content-center gap-3">
+            <button class="btn btn-primary rounded-pill">Click me</button>
+        </div>
     </form>
 {% endblock %}

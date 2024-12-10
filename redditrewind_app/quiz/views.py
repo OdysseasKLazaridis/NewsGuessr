@@ -45,7 +45,7 @@ def game(request):
         else:
             # If all quizzes have been answered, show a message
             context = {'message': 'You have completed the challenge!'}
-            return render(request, 'game/game.html', context)
+            return redirect('finished')  
     else:
            
         return redirect('index')  # Redirect to the homepage or a custom 'no challenge' page

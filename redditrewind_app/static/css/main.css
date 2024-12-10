@@ -130,7 +130,7 @@ form#multi-step-form {
 }
 
 .answer-option:hover label {
-  transform: scale(1.1); /* Scale up the label */
+  transform: scale(1.05); /* Scale up the label */
   background-color: #f0ad4e; /* Change background color */
   color: white; /* Change text color */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */

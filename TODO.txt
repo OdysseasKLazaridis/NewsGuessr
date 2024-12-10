@@ -20,6 +20,10 @@ TODO:
         also  each daily challenge will have in the model stored all the stats associated with it which will be updated every lets say
         10 users have filled the quiz
 
+        check what's going on when I already have all the cookies and no answer is loading
+
+        find a way to check the answered that has been chosen
+
     process
 
 
