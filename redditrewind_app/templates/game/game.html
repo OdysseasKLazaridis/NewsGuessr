@@ -23,7 +23,7 @@
               <div class="step-circle" onclick="displayStep(9)">9</div>
               <div class="step-circle" onclick="displayStep(10)">10</div>
             </div>
-        <form id="multi-step-form">
+        <form method="POST" id="multi-step-form">
             {%for quiz in todays_challenge.quiz_set.all%}
 
                 {% include 'game/quiz_fragment.html' with quiz=quiz count=forloop.counter %}

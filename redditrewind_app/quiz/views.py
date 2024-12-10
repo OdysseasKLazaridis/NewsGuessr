@@ -56,18 +56,22 @@ def game(request):
 
 
 def submit_choices(request):
-    today = date.today()
-    todays_challenge = Daily_Challenge.objects.filter(challenge_date=today).first()
-    quizzes = list(todays_challenge.quiz_set.all())
-    for quiz in quizzes:
-        print(quiz.id)
-        cookie_name = "quiz_" + str(quiz.id)
-        choice_id = request.COOKIES.get(cookie_name)
-        choice = Choice.objects.get(id=choice_id)
-        choice.add_one()
-    return
+    if request.method == "POST":
+        today = date.today()
+        todays_challenge = Daily_Challenge.objects.filter(challenge_date=today).first()
+        quizzes = list(todays_challenge.quiz_set.all())
+        for quiz in quizzes:
+            print(quiz.id)
+            cookie_name = "quiz_" + str(quiz.id)
+            choice_id = request.COOKIES.get(cookie_name)
+            choice = Choice.objects.get(id=choice_id)
+            choice.add_one()
 
+        # Return a JSON response indicating success
+        return JsonResponse({'success': True, 'message': 'You have completed the challenge!'})
+    return JsonResponse({'success': False, 'message': 'Invalid request'})
 
 def finished(request):
-    context = {'message': 'You have completed the challenge!'}
-    return render(request, 'game/finished.html', context)
+     context = {'message': 'You have completed the challenge!'}
+     return render(request, 'game/finished.html', context)
+

@@ -10,6 +10,16 @@ if (nextStepSpans.length > 0) {
   lastNextStepSpan.style.opacity = '0.5'; // Optional: dim the button to indicate it's disabled
 }
 
+// Select all submit buttons
+const submitButtons = document.querySelectorAll('button[type="submit"]');
+
+// Disable and set opacity for each submit button
+submitButtons.forEach(button => {
+  button.style.pointerEvents = 'none'; // Disable interactions
+  button.style.opacity = '0.5';       // Set 50% opacity
+  button.disabled = true;            // Programmatically disable the button
+});
+
 
 const firstPrevStepSpans = Array.from(document.querySelectorAll('.prev-step'));
 
@@ -47,6 +57,8 @@ $(document).ready(function() {
     // Initially hide all steps except the first one
     $(".step").slice(1).hide()
 
+
+    
     $(".next-step").click(function() {
       if (currentStep < questions) {
         
@@ -60,26 +72,7 @@ $(document).ready(function() {
           updateProgressBar(); // Update the progress bar after the step transition
         }, 500); // Make sure this matches the duration of the fadeOut animation
 
-        const form = $("#multi-step-form")[0];
-        var quizId = $(".step-" + currentStep).find("[quiz-id]").attr("quiz-id");
-    
-        // Check if a choice is selected
-        const selectedChoice = form.querySelector('input[name="choice"]:checked');
-        console.log(selectedChoice)
-          if (selectedChoice) {
-            const choiceId = selectedChoice.value; // Get the selected choice ID
-          
-            // Set the cookie with both quizId and choiceId
-            document.cookie = `quiz_${quizId}=${choiceId}; path=/; max-age=3600`; // Cookie will expire in 1 hour
-            selectedChoice.checked = false; 
-          } else {
-            console.log('No choice selected.');
-          }
-
-        
-        } else {
-          console.log('No choice selected.');
-        }
+      }
         currentStep++;
     });
 
@@ -96,28 +89,29 @@ $(document).ready(function() {
           updateProgressBar(); // Update the progress bar after the step transition
         }, 500); // Make sure this matches the duration of the fadeOut animation
 
-        const form = $("#multi-step-form")[0];
-        var quizId = $(".step-" + currentStep).find("[quiz-id]").attr("quiz-id");
-      
-      
-        // Check if a choice is selected
-        const selectedChoice = form.querySelector('input[name="choice"]:checked');
-        if (selectedChoice) {
-          const choiceId = selectedChoice.value; // Get the selected choice ID
-          // Set the cookie with both quizId and choiceId
-          document.cookie = `quiz_${quizId}=${choiceId}; path=/; max-age=3600`; // Cookie will expire in 1 hour
-          selectedChoice.checked = false;  // Only uncheck if the element is found
-        } else {
-          console.log('No choice selected.');
-        }
         currentStep--;
       } 
     });
     
-    $(".submit").click(function() {
-      if (currentStep = questions){
-        
-        // Collect form data (if needed)
+    // Initial call to update the progress bar
+    updateProgressBar();
+  } else {
+    console.error("Form with ID 'multi-step-form' not found!");
+  }
+});
+
+document.querySelectorAll('button[type="submit"]').forEach(button => {
+  button.addEventListener('click', (event) => {
+      // Prevent the default form submission
+      event.preventDefault();
+
+      // Perform your custom logic here
+      console.log('Done button clicked!');
+
+      // Example: Check if all quizzes are answered
+      if (checkAllCookies()) {
+          console.log('All quizzes answered. Proceeding...');
+            // Collect form data (if needed)
       const formData = $('#multi-step-form').serialize(); // This will collect the form data
 
       // Submit the data via AJAX
@@ -125,30 +119,69 @@ $(document).ready(function() {
         url: '/submit_choices', // The URL where you want to send the data
         type: 'POST',
         data: formData, // Send the form data
+        dataType: 'json', // Ensure we get the response in JSON format
         success: function(response) {
-          // If the server responds successfully, redirect to the "finished" page
-          if (response.success) {
-            window.location.href = 'finished.html'; // Redirect to finished page
-          } else {
-            // Handle errors (if any)
-            alert('Something went wrong. Please try again.');
-          }
+            console.log(response);  // Log the response to debug
+            window.location.href = '/finished'
         },
         error: function(xhr, status, error) {
-          // Handle AJAX errors (e.g., network issues)
-          console.error('Error occurred: ', error);
-          alert('An error occurred. Please try again.');
+            // Handle AJAX errors (e.g., network issues)
+            console.error('Error occurred: ', error);
+            alert('An error occurred. Please try again.');
         }
-      });
-    }
-
     });
-    // Initial call to update the progress bar
-    updateProgressBar();
-  } else {
-    console.error("Form with ID 'multi-step-form' not found!");
-  }
+      } else {
+          console.error('Not all quizzes are answered.');
+          alert('Please answer all quizzes before submitting.');
+      }
+  });
 });
+
+document.querySelectorAll('input[name="choice"]').forEach(choice => {
+  choice.addEventListener('click', (event) => {
+    const selectedChoice = event.target; // The clicked radio button
+    const quizId = selectedChoice.closest('[quiz-id]').getAttribute('quiz-id'); // Get the quiz ID from the parent container
+    const choiceId = selectedChoice.value; // Get the value of the selected choice
+
+    // Set a cookie with the quiz ID and choice ID
+    document.cookie = `quiz_${quizId}=${choiceId}; path=/; max-age=3600`; // Cookie expires in 1 hour
+
+    console.log(`Saved cookie: quiz_${quizId}=${choiceId}`);
+
+    checkAllCookies();
+  });
+});
+
+// Function to check if all cookies for all quizzes are set
+function checkAllCookies() {
+  // Get all quiz IDs from the DOM
+  const quizIds = Array.from(document.querySelectorAll('[quiz-id]')).map(
+    element => element.getAttribute('quiz-id')
+  );
+
+  // Check cookies for each quiz ID
+  const missingQuizIds = quizIds.filter(quizId => {
+    return !document.cookie.includes(`quiz_${quizId}=`);
+  });
+
+  if (missingQuizIds.length === 0) {
+    console.log('All quizzes are answered!');
+    // Select all submit buttons
+    const submitButtons = document.querySelectorAll('button[type="submit"]');
+
+    // Disable and set opacity for each submit button
+    submitButtons.forEach(button => {
+    button.style.pointerEvents = 'auto'; // Enable interactions
+    button.style.opacity = '1';       // Set Full opacity
+    button.disabled = false;            
+    });
+    return true
+  } else {
+    console.log('Not all quizzes are answered. Missing quiz IDs:', missingQuizIds);
+    // Optionally disable a "Submit" button
+    document.querySelector('.submit').disabled = true; // Example
+  }
+}
 
 
 
