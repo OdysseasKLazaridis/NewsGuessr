@@ -1,0 +1,26 @@
+
+<form method="POST" id="multi-step-form">
+<div class="step step-{{count}} " >
+    <h5 class="mb-4 text-center fw-bold">{{ quiz.text }}</h5>
+            {% csrf_token %}
+            <div quiz-id="{{ quiz.id }}" class=" row mb-3">
+                
+                {% for choice in quiz.choice_set.all %}
+                
+                    <div class="answer-option col-md-6 col-12 mb-3">
+                        <input type="radio" class="btn-check" name="choice" id="{{ choice.id }}" value="{{ choice.id }}" autocomplete="off" required>
+                        <label for="{{ choice.id }}" class="btn btn-outline-dark rounded-pill w-100">
+                            {{ choice.name }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="text-center d-flex justify-content-center gap-3">
+                <span class="btn btn-primary btn-outline-dark rounded-pill prev-step">Previous</span>
+                <span class="btn btn-primary btn-outline-dark rounded-pill next-step">Next</span>
+                <button type="submit" class="btn btn-primary btn-outline-dark rounded-pill">Done (0/10)</button>
+            </div>
+
+        </div>
+    </form>
+    

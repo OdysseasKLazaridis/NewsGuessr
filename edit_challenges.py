@@ -36,6 +36,8 @@ quizzes = [
             {'name': 'F*ck', 'mentions': 1200, 'is_correct': True},
             {'name': 'Sh*t', 'mentions': 900, 'is_correct': False},
             {'name': 'D*mn', 'mentions': 700, 'is_correct': False},
+            {'name': 'B*tch', 'mentions': 500, 'is_correct': False},
+            {'name': 'D*mn', 'mentions': 700, 'is_correct': False},
             {'name': 'B*tch', 'mentions': 500, 'is_correct': False}
         ]
     },

@@ -20,6 +20,9 @@ submitButtons.forEach(button => {
   button.disabled = true;            // Programmatically disable the button
 });
 
+checkCurrentStepAnswer(currentStep)
+activateStepCircles()
+checkAllCookies()
 
 const firstPrevStepSpans = Array.from(document.querySelectorAll('.prev-step'));
 
@@ -37,7 +40,10 @@ function displayStep(stepNumber) {
     $(".step-" + stepNumber).show();
     currentStep = stepNumber;
     updateProgressBar();
+
+  checkCurrentStepAnswer(currentStep)
   }
+
 }
 
 // Define the updateProgressBar function
@@ -72,6 +78,7 @@ $(document).ready(function() {
 
       }
         currentStep++;
+        checkCurrentStepAnswer(currentStep)
     });
 
     $(".prev-step").click(function() {
@@ -86,8 +93,9 @@ $(document).ready(function() {
           $(".step-" + currentStep).show().addClass("animate__animated animate__fadeInLeft"); // Show the previous step with fadeInLeft animation
           updateProgressBar(); // Update the progress bar after the step transition
         }, 500); // Make sure this matches the duration of the fadeOut animation
-
+        
         currentStep--;
+        checkCurrentStepAnswer(currentStep)
       } 
     });
     
@@ -161,7 +169,7 @@ function checkAllCookies() {
   const missingQuizIds = quizIds.filter(quizId => {
     return !document.cookie.includes(`quiz_${quizId}=`);
   });
-  updateCurrentStepUI();
+  activateStepCircles();
 
   if (missingQuizIds.length === 0) {
     console.log('All quizzes are answered!');
@@ -198,10 +206,99 @@ function updateCurrentStepUI() {
   // Loop through all step circles and apply/remove the "active" class
   stepCircles.forEach((circle, index) => {
     if (index + 1 === currentStep) {
-      circle.classList.add('active'); // Add active class to the current step
+      circle.classList.add('answered'); // Add active class to the current step
     } 
   });
 }
+
+function activateStepCircles() {
+  // Parse cookies into an object
+  const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+    const [key, value] = cookie.split("=");
+    acc[key] = value;
+    return acc;
+  }, {});
+
+  // Find all step circles
+  const stepCircles = document.querySelectorAll(".step-circle");
+
+  stepCircles.forEach((circle, index) => {
+    // Step numbers are 1-based, so add 1 to the index
+    const stepNumber = index + 1;
+
+    // Get the quiz ID for this step
+    const quizElement = document.querySelector(`.step.step-${stepNumber} [quiz-id]`);
+
+    if (quizElement) {
+      const quizId = quizElement.getAttribute("quiz-id");
+
+      // Check if there's a stored answer in cookies for this quiz ID
+      if (cookies[`quiz_${quizId}`]) {
+        // Activate the circle if an answer is stored
+        circle.style.backgroundColor = "#FF5700"; // Example active background color
+        circle.style.color = "#fff"; // Example active text color
+      } else {
+        // Reset the circle to default if no answer is stored
+        circle.style.backgroundColor = "#fff"; // Default background color
+        circle.style.color = "#FF5700"; // Default text color
+      }
+    } else {
+      console.warn(`No quiz element found for step ${stepNumber}`);
+    }
+  });
+}
+
+function checkCurrentStepAnswer(currentStep) {
+  // Find the quiz container for the current step
+  const currentQuizElement = document.querySelector(`.step.step-${currentStep} [quiz-id]`);
+  
+  if (!currentQuizElement) {
+    console.warn(`No quiz found for step ${currentStep}`);
+    return;
+  }
+
+  // Get the quiz ID from the 'quiz-id' attribute
+  const quizId = currentQuizElement.getAttribute('quiz-id');
+
+  // Parse cookies into an object
+  const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+    const [key, value] = cookie.split("=");
+    acc[key] = value;
+    return acc;
+  }, {});
+
+  // Check if there's a stored answer for this quiz ID
+  if (cookies[`quiz_${quizId}`]) {
+    const choiceId = cookies[`quiz_${quizId}`]; // Get the choice ID from the cookie
+
+    // Find the radio button corresponding to this choice
+    const choiceInput = document.querySelector(`.step.step-${currentStep} input[type="radio"][id="${choiceId}"]`);
+
+    if (choiceInput) {
+      choiceInput.checked = true; // Check the radio button
+      console.log(`Choice ${choiceId} for Quiz ${quizId} has been selected.`);
+    } else {
+      console.warn(`No input found for choice ID ${choiceId} of Quiz ${quizId}.`);
+    }
+  } else {
+    console.log(`No answer stored in cookies for Quiz ${quizId}.`);
+  }
+}
+
+document.getElementById('submit-guess').addEventListener('click', function () {
+  const userGuess = document.getElementById('guess-input').value.toLowerCase().trim();
+  const answers = document.querySelectorAll('.hidden-answer');
+
+  answers.forEach(answer => {
+      if (answer.textContent.toLowerCase() === userGuess) {
+          answer.style.visibility = 'visible'; // Reveal correct answer
+      }
+  });
+
+  document.getElementById('guess-input').value = ''; // Clear input
+});
+
+
 
 
 

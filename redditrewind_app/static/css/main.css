@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
 
 body {
+   
+    padding-bottom: 60px; /* Adjust based on the height of your footer */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,11 +17,15 @@ body {
 }
 
 .footer {
-    position: absolute;
-    bottom: 20px;
-    text-align: center;
-    font-size: 14px;
-    color: #FF5700;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa; /* Optional: Footer background color */
+  padding: 10px 0;
+  z-index: 1000; /* Ensure it stays above other content */
+  text-align: center;
+  font-size: 14px;
+  color: #FF5700;
 }
 
 .logo {
@@ -81,7 +87,7 @@ body {
     cursor: pointer; /* Added cursor pointer */
   }
 
-  .step-circle.active {
+  .step-circle.answered {
     background-color: #FF5700; /* Highlighted background */
     color: #fff; /* Text color for active step */
     border: 2px solid #fff; /* Adjust border color */
@@ -130,7 +136,7 @@ form#multi-step-form {
 .answer-option label {
   display: block;
   padding: 10px 20px; /* Optional: Add padding to the label for better styling */
-    text-align: center; /* Center the text inside the button */
+  text-align: center; /* Center the text inside the button */
   transition: all 0.3s ease;
   width: 100%; /* Make it fill the container's width */
 }
@@ -145,4 +151,27 @@ form#multi-step-form {
 .answer-option:hover {
   z-index: 1; /* Ensure hovered item stays on top */
 }
-{
+
+.answers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.answer-box {
+  width: 100px;
+  height: 50px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.answer-box .hidden-answer {
+  font-size: 16px;
+  font-weight: bold;
+}

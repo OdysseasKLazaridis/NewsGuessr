@@ -1,0 +1,30 @@
+{%extends "../base/base.html"%}
+
+{%block title%}
+    Reddit Rewind
+{% endblock %}
+
+{%block template%}
+
+
+<div class="container my-4">
+            <div class="progress px-1" style="height: 3px;">
+              <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="step-container d-flex justify-content-between">
+              <div class="step-circle" onclick="displayStep(1)">1</div>
+              <div class="step-circle" onclick="displayStep(2)">2</div>
+              <div class="step-circle" onclick="displayStep(3)">3</div>
+              <div class="step-circle" onclick="displayStep(4)">4</div>
+              <div class="step-circle" onclick="displayStep(5)">5</div>
+              <div class="step-circle" onclick="displayStep(6)">6</div>
+              <div class="step-circle" onclick="displayStep(7)">7</div>
+              <div class="step-circle" onclick="displayStep(8)">8</div>
+              <div class="step-circle" onclick="displayStep(9)">9</div>
+              <div class="step-circle" onclick="displayStep(10)">10</div>
+            </div>
+            {% for quiz in todays_challenge.quiz_set.all %}
+                {% include "game/quiz_fragment_"|add:quiz.type|add:".html" with quiz=quiz count=forloop.counter %}
+            {% endfor %}
+</div>
+
